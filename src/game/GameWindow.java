@@ -17,7 +17,7 @@ public class GameWindow {
 		window.addMouseListener(panel);
 		window.addMouseMotionListener(panel);
 		window.setPreferredSize(new Dimension(w, h));
-		window.setResizable(false);
+		window.setResizable(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.pack();
 		window.setVisible(true);

@@ -10,13 +10,16 @@ public class GameObject {
 	protected int y;
 	protected int width;
 	protected int height;
-	
 	protected int speed;
+	protected boolean isColliding;
 	
-	protected Rectangle colBox;
+	protected Rectangle colBox; 
 	
+	protected GameObject collisionObject;
+
 	public GameObject(int x, int y, int w, int h){
 		isAlive = true;
+		isColliding = false;
 		
 		this.x = x;
 		this.y = y;
@@ -24,15 +27,48 @@ public class GameObject {
 		this.height = h;
 		
 		speed = 0;
+
 		colBox = new Rectangle(x, y, width, height);
 	}
 	
+	public GameObject getCollisionObject() {
+		return collisionObject;
+	}
+
+	public void setCollisionObject(GameObject collisionObject) {
+		this.collisionObject = collisionObject;
+	}
+	
+	public boolean isColliding() {
+		return isColliding;
+	}
+
+	public void setColliding(boolean isColliding) {
+		this.isColliding = isColliding;
+	}
+
 	public boolean isAlive() {
 		return isAlive;
 	}
 
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+	public Rectangle getColBox() {
+		return colBox;
+	}
+
+	public void setColBox(Rectangle colBox) {
+		this.colBox = colBox;
 	}
 
 	public int getX() {

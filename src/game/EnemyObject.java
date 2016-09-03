@@ -12,14 +12,21 @@ public class EnemyObject extends GameObject {
 	public void draw(Graphics g){
 		g.setColor(Color.RED);
 		g.fillRect(x, y, width, height);
+		
+		//g.setColor(Color.CYAN);
+		//g.drawRect(colBox.x, colBox.y, colBox.width, colBox.height);
 	}
 	
 	public void update(){
-		super.update();
-		x += (int)(5 * Math.sin(ctr));
-		y += (int)(5 * Math.cos(ctr++));
+		x += (int)(15 * Math.sin(ctr));
+		y += (int)(15 * Math.cos(ctr++));
 		
 		y += 5;
+	
+		if(isColliding && collisionObject instanceof BulletObject){
+			isAlive = false;
+		}
+		
+		colBox.setBounds(x, y, width, height);
 	}
-
 }

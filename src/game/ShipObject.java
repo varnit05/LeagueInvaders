@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class ShipObject extends GameObject {
 	private boolean canFire;
@@ -13,6 +14,8 @@ public class ShipObject extends GameObject {
 		
 		speed = 5;
 		canFire = true;
+		
+		colBox = new Rectangle(x - (width / 2), y - (height / 2), width, height);
 	}
 	
 	public void draw(Graphics g){
@@ -22,12 +25,11 @@ public class ShipObject extends GameObject {
 		g.setColor(Color.BLUE);
 		g.fillPolygon(xp, yp, 3);
 		
-		g.setColor(Color.CYAN);
-		g.drawRect(colBox.x, colBox.y, colBox.width, colBox.height);
+		//g.setColor(Color.CYAN);
+		//g.drawRect(colBox.x, colBox.y, colBox.width, colBox.height);
 	}
 	
 	public void update(){
-		super.update();
 		handleInput();
 		
 		if(x <= 0) { 
@@ -43,6 +45,12 @@ public class ShipObject extends GameObject {
 		else if(y >= LeagueInvaders.HEIGHT){
 			y = LeagueInvaders.HEIGHT;
 		}	
+		
+		colBox.setBounds(x - (width / 2), y - (height / 2), width, height);
+		
+		if(isColliding && collisionObject instanceof EnemyObject){
+			isAlive = false;
+		}
 	}
 	
 	public void setObjectManager(ObjectManager o){
@@ -56,7 +64,7 @@ public class ShipObject extends GameObject {
 		if(InputManager.right_key){ x += speed; }
 				
 		if(InputManager.space_key && canFire){
-			objManager.addObject(new BulletObject(x, y, 5, 15));
+			objManager.addObject(new BulletObject(x - 3, y - height, 6, 15));
 			canFire = false;
 		}
 		
