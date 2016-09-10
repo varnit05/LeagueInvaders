@@ -19,14 +19,8 @@ public class ShipObject extends GameObject {
 	}
 	
 	public void draw(Graphics g){
-		int[] xp = {x - (width / 2), x, x + (width / 2)};
-		int[] yp = {y + (height / 2), y - (height / 2), y + (height / 2)};
 		
-		g.setColor(Color.BLUE);
-		g.fillPolygon(xp, yp, 3);
-		
-		//g.setColor(Color.CYAN);
-		//g.drawRect(colBox.x, colBox.y, colBox.width, colBox.height);
+		g.drawImage(GamePanel.rocket, x, y, width, height, null);
 	}
 	
 	public void update(){
@@ -64,7 +58,7 @@ public class ShipObject extends GameObject {
 		if(InputManager.right_key){ x += speed; }
 				
 		if(InputManager.space_key && canFire){
-			objManager.addObject(new BulletObject(x - 3, y - height, 6, 15));
+			objManager.addObject(new BulletObject(x + (width / 2), y, 6, 15));
 			canFire = false;
 		}
 		

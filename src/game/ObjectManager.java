@@ -68,4 +68,8 @@ public class ObjectManager {
 			}
 		}
 	}
+	
+	public void reset(){
+		objects.clear();
+	}
 }

@@ -10,9 +10,10 @@ public class EnemyObject extends GameObject {
 	}
 	
 	public void draw(Graphics g){
-		g.setColor(Color.RED);
-		g.fillRect(x, y, width, height);
+		//g.setColor(Color.RED);
+		//g.fillRect(x, y, width, height);
 		
+		g.drawImage(GamePanel.alien, x, y, width, height, null);
 		//g.setColor(Color.CYAN);
 		//g.drawRect(colBox.x, colBox.y, colBox.width, colBox.height);
 	}
@@ -24,6 +25,7 @@ public class EnemyObject extends GameObject {
 		y += 5;
 	
 		if(isColliding && collisionObject instanceof BulletObject){
+			GamePanel.updateScore();
 			isAlive = false;
 		}
 		

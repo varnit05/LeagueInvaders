@@ -31,8 +31,10 @@ public class BulletObject extends GameObject{
 	}
 	
 	public void draw(Graphics g){
-		g.setColor(Color.BLACK);
-		g.fillRect(x, y, width, height);
+		//g.setColor(Color.BLACK);
+		//g.fillRect(x, y, width, height);
+		
+		g.drawImage(GamePanel.bullet, x, y, width, height, null);
 		
 		//g.setColor(Color.RED);
 		//g.drawRect(colBox.x, colBox.y, colBox.width, colBox.height);

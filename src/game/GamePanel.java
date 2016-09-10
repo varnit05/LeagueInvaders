@@ -10,7 +10,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -21,6 +23,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	
 	Timer timer;
 	ObjectManager objManager;
+	ShipObject s;
+	
+	public static BufferedImage rocket;
+	public static BufferedImage bullet;
+	public static BufferedImage alien;
+	public static BufferedImage space;
 	
 	int menuState = 0;
 	int instructionState = 1;
@@ -28,12 +36,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	int endState = 3;
 	int currentState = menuState;
 	
+	static int score = 0;
+	
 	Font titleFont;
 	Font optionsFont;
 	
 	public GamePanel(){
+		try{
+			rocket = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+			bullet = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+			alien = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+			space = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
+		}catch(Exception e){
+			
+		}
+		
 		objManager = new ObjectManager();
-		ShipObject s = new ShipObject(250, 700, 50, 50);
+		s = new ShipObject(250, 700, 50, 50);
 		s.setObjectManager(objManager);
 		objManager.addObject(s);
 		
@@ -44,6 +63,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		timer.start();
 	}
 
+	public static void updateScore(){
+		score++;
+	}
+	
 	public void paintComponent(Graphics g){
 		if(currentState == menuState){
 			g.setColor(Color.BLUE);
@@ -56,7 +79,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			g.drawString("Press SPACE for intructions", 90, 400);
 		}
 		else if(currentState == gameState){
+			g.drawImage(space, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
 			objManager.draw(g);
+		}else if(currentState == endState){
+			g.setColor(Color.RED);
+			g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+			g.setColor(Color.BLACK);
+			g.setFont(titleFont);
+			g.drawString("GAME OVER", 100, 100);
+			g.setFont(optionsFont);
+			g.drawString("You killed " + score + " aliens.", 150, 300);
+			g.drawString("Press BACKSPACE to Restart", 90, 500);
 		}
 	}
 	
@@ -69,13 +102,26 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			}else if(InputManager.enter_key){
 				currentState = gameState;
 			}
-		}
-		if(currentState == gameState){
+		}else if(currentState == gameState){
 			objManager.update();
-			repaint();
+			if(!s.isAlive){
+				currentState = endState;
+			}
+		}else if(currentState == endState){
+			
 		}
+		
+		repaint();
 	}
 
+	private void resetGame(){
+		score = 0;
+		objManager.reset();
+		s = new ShipObject(250, 700, 50, 50);
+		s.setObjectManager(objManager);
+		objManager.addObject(s);
+	}
+	
 	@Override
 	public void mouseDragged(MouseEvent e) {
 
@@ -130,6 +176,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		if(key == KeyEvent.VK_ESCAPE) { 
 			timer.stop(); 
 			System.exit(0);
+		}
+		
+		if(currentState == endState && e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
+			resetGame();
+			currentState = menuState;
 		}
 		
 	}
