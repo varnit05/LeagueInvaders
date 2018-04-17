@@ -16,13 +16,14 @@ public class LeagueInvaders  extends JPanel implements ActionListener, KeyListen
 	static GamePanel panel; 
 	
 	public static void main(String[] args) {
-		 frame = new JFrame();
+
 		 LeagueInvaders league = new LeagueInvaders();
 		league.setup();
 		
 		
 	}
 	public LeagueInvaders() {
+		 frame = new JFrame();
 		panel = new GamePanel();
 		frame.addKeyListener(panel);
 	}
