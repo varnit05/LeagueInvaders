@@ -69,9 +69,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		if (e.KEY_PRESSED == ENTER) {
+			currentState.nextState();
+		}
+		}
+		 
+		else if (if(currentState > END_STATE){
+
+                currentState = MENU_STATE;
+
+        }
+			
+		
+		
 		System.out.println("With The");
 	}
-
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -82,14 +94,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
+		g.setColor(Color.RED);
 
+		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 	}
 
 	void updateEndState() {
+		g.setColor(Color.BLACK);
 
+		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 	}
 
 	void drawMenuState(Graphics g) {
+		g.setColor(Color.BLUE);
+
+		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);   
 	}
 
 	void drawGameState(Graphics g) {
