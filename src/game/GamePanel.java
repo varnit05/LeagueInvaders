@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,18 +16,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
+	Font tittleFont;
 	int currentState = MENU_STATE;
 
 	public void paintComponent(Graphics g) {
-		if (currentState==MENU_STATE) {
+		if (currentState == MENU_STATE) {
 			drawMenuState(g);
 		}
-		
-		if (currentState==GAME_STATE) {
+
+		if (currentState == GAME_STATE) {
 			drawGameState(g);
 		}
-		
-		if (currentState==END_STATE) {
+
+		if (currentState == END_STATE) {
 			drawEndState(g);
 		}
 		g.fillRect(10, 10, 100, 100);
@@ -41,15 +44,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if (currentState==MENU_STATE) {
+		if (currentState == MENU_STATE) {
 			updateMenuState();
 		}
-		
-		if (currentState==GAME_STATE) {
+
+		if (currentState == GAME_STATE) {
 			updateGameState();
 		}
-		
-		if (currentState==END_STATE) {
+
+		if (currentState == END_STATE) {
 			updateEndState();
 		}
 		repaint();
@@ -57,6 +60,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void StartGame() {
 		timer.start();
+		tittleFont = new Font ("Arial",Font.PLAIN,48);
 
 	}
 
@@ -69,21 +73,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.KEY_PRESSED == ENTER) {
-			currentState.nextState();
-		}
-		}
-		 
-		else if (if(currentState > END_STATE){
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			currentState++;
+			if (currentState > END_STATE) {
 
-                currentState = MENU_STATE;
+				currentState = MENU_STATE;
 
-        }
-			
-		
-		
+			}
+
+		}
+
 		System.out.println("With The");
 	}
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -94,28 +96,28 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
-		g.setColor(Color.RED);
 
-		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 	}
 
 	void updateEndState() {
-		g.setColor(Color.BLACK);
 
-		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 	}
 
 	void drawMenuState(Graphics g) {
 		g.setColor(Color.BLUE);
 
-		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);   
+		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 	}
 
 	void drawGameState(Graphics g) {
+		g.setColor(Color.RED);
 
+		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 	}
 
-	void drawEndState(Graphics g ) {
-		
+	void drawEndState(Graphics g) {
+		g.setColor(Color.BLACK);
+
+		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 	}
 }
