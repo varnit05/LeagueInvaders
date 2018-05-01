@@ -31,6 +31,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (currentState == END_STATE) {
 			drawEndState(g);
 		}
+		
+		// square "rocketship"
+		g.setColor(Color.BLACK);
 		g.fillRect(10, 10, 100, 100);
 	}
 
@@ -107,17 +110,30 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLUE);
 
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		g.setColor(Color.YELLOW);
+		g.setFont(tittleFont);
+        g.drawString("LEAGUE INVADERS", 35, 200);
+        g.setFont(new Font("Arial", Font.PLAIN, 25));
+        g.drawString("Press ENTER to start ", 120, 400);
+        g.drawString("Press SPACE for instructions ", 75, 700);
 	}
 
 	void drawGameState(Graphics g) {
-		g.setColor(Color.RED);
+		g.setColor(Color.BLACK);
 
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 	}
 
 	void drawEndState(Graphics g) {
-		g.setColor(Color.BLACK);
+		g.setColor(Color.RED);
 
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
-	}
+		g.setColor(Color.BLACK);
+		g.setFont(tittleFont);
+        g.drawString("GAME OVER", 100, 200);
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
+        g.drawString("You Killed __ enemies ", 140, 300);
+        g.drawString("Press Enter to restart ", 140, 450);
+	
+}
 }
