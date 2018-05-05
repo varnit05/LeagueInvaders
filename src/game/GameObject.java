@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class GameObject {
@@ -7,7 +8,9 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
-
+   boolean isAlive() {
+	return true;
+}
 	public GameObject(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
@@ -15,13 +18,11 @@ public class GameObject {
 		this.width = width;
 	}
 
+	void Update() {
 
+	}
 
-void Update( ) {
-x =100+x;
-y =25+y;
-}
-void Draw(Graphics g) {
-	g.fillRect(x,y,  100, 100);
-}
+	void Draw(Graphics g) {
+
+	}
 }
