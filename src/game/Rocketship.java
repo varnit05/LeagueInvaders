@@ -2,7 +2,6 @@ package game;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 
 public class Rocketship extends GameObject {
 
@@ -36,6 +35,16 @@ public class Rocketship extends GameObject {
 	}
 	public void Moveright() {
 		x += speed;
+	}
+
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void draw(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 	}
 
