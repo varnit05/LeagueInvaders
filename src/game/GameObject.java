@@ -7,9 +7,9 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
-   boolean isAlive() {
-	return true;
-}
+    boolean isAlive= true;
+   
+
 	public GameObject(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
@@ -17,7 +17,7 @@ public class GameObject {
 		this.width = width;
 	}
 
-	void Update() {
+	void update() {
 
 	}
 

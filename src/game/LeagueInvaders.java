@@ -10,10 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class LeagueInvaders  extends JPanel implements ActionListener, KeyListener{
-	public static JFrame frame;
-	public static final int WIDTH = 500;
-	public static final int HEIGHT = 800;
-	static GamePanel panel; 
+	public JFrame frame;
+	public  static final int WIDTH = 500;
+	public   static final int HEIGHT = 800;
+	 GamePanel panel; 
 	
 	public static void main(String[] args) {
 
