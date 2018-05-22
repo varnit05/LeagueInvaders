@@ -84,22 +84,22 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			}
 
 		}
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			om.addProjectile(new Projectile(rs.x, rs.y, 10, 10));
+		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			rs.Moveup();
-		
-	}
-		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			rs.Movedown();
-		
-	}
-		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			rs.Moveright();
-		
-	}
-		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			rs.Moveleft();
-		
-	}
+
+		}
 
 		System.out.println("With The");
 	}
@@ -110,13 +110,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		System.out.println("Boyz");
 	}
 
-
 	void updateMenuState() {
 	}
 
 	void updateGameState() {
-	om.update();
-		
+		om.update();
+
 	}
 
 	void updateEndState() {

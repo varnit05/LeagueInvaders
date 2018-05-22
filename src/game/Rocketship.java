@@ -11,7 +11,7 @@ public class Rocketship extends GameObject {
 
 	int speed;
 
-	void Draw(Graphics g) {
+	void draw(Graphics g) {
 		g.setColor(Color.BLUE);
 
 		g.fillRect(x, y, width, height);
@@ -24,30 +24,25 @@ public class Rocketship extends GameObject {
 		// TODO Auto-generated constructor stub
 		speed = 20;
 	}
+
 	public void Moveup() {
 		y -= speed;
 	}
+
 	public void Movedown() {
 		y += speed;
 	}
+
 	public void Moveleft() {
 		x -= speed;
 	}
+
 	public void Moveright() {
 		x += speed;
 	}
 
 	public void update() {
 		// TODO Auto-generated method stub
-		
-	}
 
-	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
 	}
-	}
-
-		
-	
-
+}

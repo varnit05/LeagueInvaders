@@ -7,8 +7,7 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
-    boolean isAlive= true;
-   
+	boolean isAlive = true;
 
 	public GameObject(int x, int y, int width, int height) {
 		this.x = x;
@@ -21,7 +20,7 @@ public class GameObject {
 
 	}
 
-	void Draw(Graphics g) {
+	void draw(Graphics g) {
 
 	}
 }
