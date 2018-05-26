@@ -2,10 +2,12 @@ package game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class Rocketship extends GameObject {
 
-	void Update() {
+	void update() {
+		super.update();
 
 	}
 
@@ -23,6 +25,7 @@ public class Rocketship extends GameObject {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 20;
+
 	}
 
 	public void Moveup() {
@@ -41,8 +44,4 @@ public class Rocketship extends GameObject {
 		x += speed;
 	}
 
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
 }

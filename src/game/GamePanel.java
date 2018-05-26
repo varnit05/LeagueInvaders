@@ -115,6 +115,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void updateGameState() {
 		om.update();
+		om.manageEnemies();
+		om.checkColission();
+		om.purgeObjects();
+		if(!rs.isAlive){
+			currentState = END_STATE;
+			
+		}
 
 	}
 
@@ -149,7 +156,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(tittleFont);
 		g.drawString("GAME OVER", 100, 200);
 		g.setFont(new Font("Arial", Font.PLAIN, 20));
-		g.drawString("You Killed __ enemies ", 140, 300);
+		g.drawString("You Killed " + om.getScore() + " enemies ", 140, 300);
 		g.drawString("Press Enter to restart ", 140, 450);
 
 	}

@@ -13,6 +13,8 @@ public class Projectile extends GameObject {
 	}
 
 	void update() {
+	     collisionBox.setBounds(x, y, width, height);
+	        super.update();
 		y--;
 		if (y == 0) {
 			isAlive = false;
