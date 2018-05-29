@@ -7,7 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -18,8 +21,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int END_STATE = 2;
 	Font tittleFont;
 	int currentState = MENU_STATE;
-	Rocketship rs = new Rocketship(250, 700, 50, 50);
+	Rocketship rs = new Rocketship(250, 700, 70, 70);
 	ObjectManager om = new ObjectManager(rs);
+	   public static BufferedImage alienImg;
+
+       public static BufferedImage rocketImg;
+
+       public static BufferedImage bulletImg;
+
+       public static BufferedImage spaceImg;
 
 	public void paintComponent(Graphics g) {
 		if (currentState == MENU_STATE) {
@@ -41,6 +51,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public GamePanel() {
 
 		timer = new Timer(1000 / 60, this);
+        try {
+
+            alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+
+            rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+
+            bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+
+            spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
+
+    } catch (IOException e) {
+
+            // TODO Auto-generated catch block
+
+            e.printStackTrace();
+
+    }
 	}
 
 	@Override
@@ -77,15 +104,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			currentState++;
+		
 			if (currentState > END_STATE) {
 
 				currentState = MENU_STATE;
-
+				rs = new Rocketship(250,700,70,70);
+				
+				om = new ObjectManager(rs);
 			}
+			
 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			om.addProjectile(new Projectile(rs.x, rs.y, 10, 10));
+			om.addProjectile(new Projectile(rs.x+29, rs.y, 10, 10));
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			rs.Moveup();
@@ -142,9 +173,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
-		g.setColor(Color.BLACK);
-
-		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		g.drawImage(GamePanel.spaceImg, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
 		om.draw(g);
 	}
 

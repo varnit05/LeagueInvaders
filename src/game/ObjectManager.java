@@ -7,7 +7,7 @@ import java.util.Random;
 public class ObjectManager {
 
 	long enemyTimer;
-	int enemySpawnTime = 200;
+	int enemySpawnTime = 700;
 	public Rocketship rocket;
 	ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
 	int score = 0;
@@ -27,6 +27,10 @@ public class ObjectManager {
 		rocket.update();
 		for (Projectile p : projectileList) {
 			p.update();
+			
+		}
+		for (Alien a : AlienList) {
+			a.update();
 		}
 
 	}
@@ -35,12 +39,13 @@ public class ObjectManager {
 		rocket.draw(g);
 		for (Projectile p : projectileList) {
 			p.draw(g);
+		}
 			for (Alien a : AlienList) {
 				a.draw(g);
 			}
 
 		}
-	}
+	
 
 	void addProjectile(Projectile e) {
 		projectileList.add(e);
@@ -53,7 +58,7 @@ public class ObjectManager {
 
 	public void manageEnemies() {
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
-			addAlien(new Alien(new Random().nextInt(LeagueInvaders.WIDTH), 0, 50, 50));
+			addAlien(new Alien(new Random().nextInt(LeagueInvaders.WIDTH), 0, 80, 80));
 
 			enemyTimer = System.currentTimeMillis();
 		}

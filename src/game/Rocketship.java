@@ -1,8 +1,6 @@
 package game;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 
 public class Rocketship extends GameObject {
 
@@ -14,17 +12,17 @@ public class Rocketship extends GameObject {
 	int speed;
 
 	void draw(Graphics g) {
-		g.setColor(Color.BLUE);
-
-		g.fillRect(x, y, width, height);
-
+        g.drawImage(GamePanel.rocketImg, x, y, width, height, null);
+     
+        
+        
 	}
 
 	public Rocketship(int x, int y, int width, int height) {
 
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
-		speed = 20;
+		speed = 30;
 
 	}
 
